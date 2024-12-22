@@ -136,12 +136,12 @@ def _arg2builders(env, arg):
 
     The returned list contains no repetitions (objects are unique).
     """
-    from SCons.Util import is_List, uniquer
+    from SCons.Util import is_List, unique
     if not is_List(arg):
         arg = [ arg ]
     # Make it unique (but preserve order)
     # uniquer() is in SCons since 1.0.0 so it should be fine
-    arg = uniquer(arg)
+    arg = unique(arg)
     builders = map(lambda b : _arg2builder(env,b), arg)
     return [b for b in builders if b is not None]
 

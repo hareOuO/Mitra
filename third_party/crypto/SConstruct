@@ -1,5 +1,5 @@
 import os, sys
-
+os.system("openssl version")
 env = Environment(tools = ['default', 'gcccov'])
 
 try:
@@ -30,6 +30,7 @@ def print_cmd_line(s, targets, sources, env):
     in_str = "%s "% (' and '.join([str(x) for x in sources]))
     out_str = "=> %s\n"% (' and '.join([str(x) for x in targets]))
     sys.stdout.write(cmd + "\t " + in_str + " " + out_str)
+    print(f"Command: {s}")  # 输出完整的命令行
 
 env['PRINT_CMD_LINE_FUNC'] = print_cmd_line
 
@@ -118,7 +119,7 @@ if env['PLATFORM'] == 'darwin':
     shared_lib_env.Append(LINKFLAGS = ['-install_name', '@rpath/libsse_crypto.dylib'])    
     
 library_build_prefix = 'library'
-shared_lib = shared_lib_env.SharedLibrary(library_build_prefix+'/lib/sse_crypto',objects);
+shared_lib = shared_lib_env.SharedLibrary(library_build_prefix+'/lib/mitra_sse_crypto',objects);
 static_lib = lib_env.StaticLibrary(library_build_prefix+'/lib/sse_crypto',objects)
 
 headers = Glob('src/*.h') + Glob('src/*.hpp') + ['src/ppke/GMPpke.h']
