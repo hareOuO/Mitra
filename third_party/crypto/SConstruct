@@ -48,9 +48,14 @@ env.Append(LIBS = ['crypto','gmp'])
 
 static_relic = ARGUMENTS.get('static_relic', 0)
 if int(static_relic):
+    env.Append(LIBPATH = ['/opt/og/mitra_relic/build/lib'])
     env.Append(LIBS = ['relic_s'])
+    env.Append(CCFLAGS = ['-fPIC'])  # 确保静态库和目标文件使用 -fPIC
+    
 else:
-	env.Append(LIBS = ['relic'])
+    env.Append(LIBPATH = ['/opt/og/mitra_relic/build/lib'])
+    env.Append(CCFLAGS = ['-fPIC'])  # 确保目标文件使用 -fPIC
+    env.Append(LIBS = ['relic'])
 
 env['AS'] = ['yasm']
 env.Append(ASFLAGS = ['-D', 'LINUX'])

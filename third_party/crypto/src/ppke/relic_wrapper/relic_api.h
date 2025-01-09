@@ -29,8 +29,10 @@
 		#undef __cplusplus
 	extern "C" {
 #endif
-   #include <relic/relic.h>
-   #include <relic/relic_conf.h>
+//    #include <relic/relic.h>
+//    #include <relic/relic_conf.h>
+	#include "/usr/local/include/relic/relic.h"
+	#include "/usr/local/include/relic/relic_conf.h"
 
 #ifdef ___cplusplus
 }
